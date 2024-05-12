@@ -1,0 +1,72 @@
+---
+title: "Single cell RNA-seq in R and python"
+title-short: "CDNM workshop sketch"
+format: html
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+This document is written in markdown for processing
+with quarto.
+
+## Using R/Bioconductor to get the TENx PBMC 3k dataset
+```{r, message=FALSE}
+library(TENxPBMCData)
+library(SingleCellExperiment)
+p3k = TENxPBMCData("pbmc3k")
+p3k
+class(assay(p3k))
+```
+
+## Using python/scanpy to get the TENx PBMC 3k dataset
+
+```{python, message=FALSE}
+import scanpy as sc
+pp3k = sc.datasets.pbmc3k()
+pp3k
+```
+
+# Bioconductor 'SingleR' workflow for reference-based labeling
+
+Start with the single-cell expression data for 2700
+PBMCs.  Raw counts are normalized and log-transformed,
+see `scuttle::normalizeCounts`.
+
+```{r getp3, message=FALSE}
+assay(p3k) = as.matrix(assay(p3k)) # make dense
+p3k = scuttle::logNormCounts(p3k)
+p3k
+```
+
+Develop a provisional labeling with SingleR.
+
+
+Here we use HumanPrimaryCellAtlas "fine-grained"
+labeling.
+
+```{r dosing, message=FALSE,eval=TRUE,cache=TRUE}
+library(SingleR)
+library(celldex)
+hpca = celldex::HumanPrimaryCellAtlasData()
+inirown = rownames(p3k)
+rownames(p3k) = make.names(rowData(p3k)$Symbol, unique=TRUE)
+ann2 = SingleR(p3k, hpca, labels=hpca$label.fine)
+library(scater)
+p3kp = runPCA(p3k)
+pairs(reducedDims(p3kp)$PCA[,1:4],
+  col=factor(ann2$labels), pch=19, cex=.3)
+rownames(p3k) = inirown
+```
+
+Interactive visualization
+
+```{r, doviz, message=FALSE}
+df23 = data.frame(reducedDims(p3kp)$PCA[,1:4], type=ann2$labels)
+library(ggplot2)
+p23 = ggplot(df23, aes(PC3, PC2, color=type)) + geom_point()
+library(plotly)
+ggplotly(p23)
+```
