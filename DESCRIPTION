@@ -1,0 +1,5 @@
+Title: CDNM single-cell RNA-seq workshop
+Description: Hands-on overview of working with various analytic systems
+URL: https://docker.io/vjcitn/CDNMscrna:0.0.1
+Depends: R (>= 4.4.0), scRNAseq, ggplot2, scuttle, plotly,
+	TENxPBMCData, celldex, scater
