@@ -20,6 +20,6 @@ useful
 - [planned] Overview of the [best practices book](https://www.sc-best-practices.org/preamble.html)
 - [planned] Exploring catlas.org's scATACseq collection (site is down?)
 - [planned] Overview of the [spatial transcriptomics book](https://lmweber.org/BestPracticesST/)
-- [planned] Using [lemur](https://bioconductor.org/lemur) for cluster-free
+- [planned] Using [lemur](https://bioconductor.org/packages/lemur) for cluster-free
 differential expression between experiment groups in single-cell RNA-seq
 
