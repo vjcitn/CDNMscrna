@@ -1,6 +1,10 @@
 ---
 title: "Single cell RNA-seq in R and python"
 title-short: "CDNM workshop sketch"
+vignette: >
+  %\VignetteIndexEntry{Single cell RNA-seq for CDNM}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
 format: html
 toc: true
 editor_options: 
@@ -22,6 +26,9 @@ class(assay(p3k))
 ```
 
 ## Using python/scanpy to get the TENx PBMC 3k dataset
+
+Not clear how to disable progress bar here, but it
+isn't too serious.
 
 ```{python, message=FALSE}
 import scanpy as sc
