@@ -10,7 +10,7 @@ Authors@R:
      )
     )
 Depends: R (>= 4.3.0) 
-Suggests: scRNAseq, ggplot2, scuttle, plotly,
+Suggests: scRNAseq, ggplot2, scuttle, plotly, quarto,
 	TENxPBMCData, celldex, scater, CuratedAtlasQueryR
 License: Artistic-2.0
 Encoding: UTF-8
