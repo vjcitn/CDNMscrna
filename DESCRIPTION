@@ -1,6 +1,6 @@
 Package: CDNMscrna
 Title: CDNM single-cell RNA-seq workshop
-Version: 0.0.2
+Version: 0.0.3
 Description: Hands-on overview of working with various analytic systems
 Authors@R: 
     c(person(

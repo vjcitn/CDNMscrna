@@ -1,4 +1,5 @@
 # MUNGED VJC 15 May 2024 to get rid of sysreqs which was archived
+# adds quarto install
 name: Check, build, and push image
 
 on: [push, pull_request]
@@ -9,7 +10,7 @@ env:
 jobs:
   r-build-and-check:
     runs-on: ubuntu-latest
-    container: bioconductor/bioconductor_docker:RELEASE_3_19
+    container: bioconductor/bioconductor_docker:RELEASE_3_18
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: TRUE
@@ -19,6 +20,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Install quarto
+	env: 
+          QUARTO_VERSION: "1.4.551"
+        run:
+          sudo curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.551/quarto-1.4.551-linux-amd64.deb
+          sudo apt-get install gdebi-core
+          sudo gdebi quarto-linux-amd64.deb
+          quarto check install # fail if bad?
 
       - name: Query dependencies and update old packages
         run: |
