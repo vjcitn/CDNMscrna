@@ -25,7 +25,6 @@ jobs:
       - name: Install quarto
         run: |
           sudo curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.551/quarto-1.4.551-linux-amd64.deb
-          sudo apt-get install gdebi-core
           sudo dpkg -i quarto-linux-amd64.deb
           quarto check install # fail if bad?
 
