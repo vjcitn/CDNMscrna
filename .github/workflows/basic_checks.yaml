@@ -1,3 +1,4 @@
+# MUNGED VJC 15 May 2024 to get rid of sysreqs which was archived
 name: Check, build, and push image
 
 on: [push, pull_request]
@@ -34,14 +35,14 @@ jobs:
           restore-keys: ${{ env.cache-version }}-${{ runner.os }}-r-
 
       # This lets us augment with additional dependencies
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
+#      - name: Install system dependencies
+#        if: runner.os == 'Linux'
+#        env:
+#          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+#        run: |
+#          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+#          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+#          sudo -s eval "$sysreqs"
           
       - name: Install dependencies
         run: |
