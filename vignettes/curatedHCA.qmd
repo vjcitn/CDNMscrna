@@ -1,0 +1,27 @@
+---
+title: "Working with curated Human Cell Atlas"
+title-short: "Uniformly preprocessed HCA"
+vignette: >
+  %\VignetteIndexEntry{Working with curated Human Cell Atlas}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+format: html
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+A [preprint](https://www.biorxiv.org/content/10.1101/2023.06.08.542671v1.full)
+describes the production of a curated resource of 29 million single cells.
+
+# Metadata interactions
+
+```{r getmd, message=FALSE}
+library(CuratedAtlasQueryR)
+md = get_metadata()
+md
+library(dplyr)
+md |> group_by(tissue) |> summarise(n=n())
+```
