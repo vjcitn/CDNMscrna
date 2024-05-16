@@ -27,10 +27,13 @@ class(assay(p3k))
 
 ## Using python/scanpy to get the TENx PBMC 3k dataset
 
+This is blocked because github action is not able to find
+installed scanpy.
+
 Not clear how to disable progress bar here, but it
 isn't too serious.
 
-```{python, message=FALSE}
+```{python, message=FALSE, eval=FALSE}
 import scanpy as sc
 pp3k = sc.datasets.pbmc3k()
 pp3k
