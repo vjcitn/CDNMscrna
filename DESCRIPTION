@@ -1,6 +1,6 @@
 Package: CDNMscrna
 Title: CDNM single-cell RNA-seq workshop
-Version: 0.0.3
+Version: 0.0.4
 Description: Hands-on overview of working with various analytic systems
 Authors@R: 
     c(person(
@@ -10,7 +10,7 @@ Authors@R:
      )
     )
 Depends: R (>= 4.3.0) 
-Suggests: scRNAseq, ggplot2, scuttle, plotly, quarto,
+Suggests: scRNAseq, ggplot2, scuttle, plotly, quarto, SingleR,
 	TENxPBMCData, celldex, scater, CuratedAtlasQueryR
 License: Artistic-2.0
 Encoding: UTF-8
