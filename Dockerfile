@@ -4,7 +4,16 @@ WORKDIR /home/rstudio
 
 COPY --chown=rstudio:rstudio . /home/rstudio/
 
-RUN Rscript -e "options(repos = c(CRAN = 'https://cran.r-project.org')); BiocManager::install(version="3.18", ask=FALSE)"
+# setup
+RUN Rscript -e "BiocManager::install(version="3.18", ask=FALSE)"
 
-RUN Rscript -e "options(repos = c(CRAN = 'https://cran.r-project.org')); devtools::install('.', dependencies=TRUE, build_vignettes=TRUE, repos = BiocManager::repositories())"
+# now build for the workshop
+RUN Rscript -e "devtools::install('.', dependencies=TRUE, build_vignettes=TRUE, repos = BiocManager::repositories())"
+
+# now we are outside bioc/cran ecosystems
+
+RUN Rscript -e "brep <- BiocManager::repositories(); \
+     brep <- c(brep, 'r-universe'='https://chanzuckerberg.r-universe.dev', \
+     'clou'='https://cloud.r-project.org'); \
+     install.packages('cellxgene.census', repos=brep)" # maximize use of binaries
 
