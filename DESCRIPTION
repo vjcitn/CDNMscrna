@@ -14,7 +14,7 @@ Suggests: scRNAseq, ggplot2, scuttle, plotly, quarto, SingleR,
 	TENxPBMCData, celldex, scater, CuratedAtlasQueryR,
 	arrow, urltools, tiledb, aws.s3, spdl, aws.signature,
 	RcppSpdlog, RcppDate, RcppCCTZ, triebeard, RcppInt64,
-	nanoarrow, nanotime, openssl, fs
+	nanoarrow, nanotime, openssl, fs, remotes
 License: Artistic-2.0
 Encoding: UTF-8
 VignetteBuilder: quarto
