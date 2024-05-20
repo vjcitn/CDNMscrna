@@ -40,10 +40,6 @@ jobs:
       - name: Query dependencies and update old packages
         run: |
           BiocManager::install(ask=FALSE)
-          brep <- BiocManager::repositories()
-          brep <- c(brep, 'r-universe'='https://chanzuckerberg.r-universe.dev', 
-                    'clou'='https://cloud.r-project.org'); 
-          install.packages('cellxgene.census', repos=brep) # maximize use of binaries
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
         shell: Rscript {0}
         

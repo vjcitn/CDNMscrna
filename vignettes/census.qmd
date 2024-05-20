@@ -20,6 +20,15 @@ We'll have a look at the R package, browsing
 metadata, and pulling down a dataset with
 selected cells.
 
+# Installation
+
+```{r getpack}
+ii = rownames(installed.packages())
+if (!("cellxgene.census" %in% ii))
+  remotes::install_github("chanzuckerberg/cellxgene-census", 
+  subdir="api/r/cellxgene.census")
+```
+
 # Metadata
 
 Start with a connection.  Remember to
