@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">CDNMscrna</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.4</span>
       </span>
     </div>
 
@@ -53,6 +53,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/census.html">Working with cellxgene census</a>
+    </li>
+    <li>
       <a href="../articles/curatedHCA.html">Working with curated Human Cell Atlas</a>
     </li>
   </ul>
@@ -101,7 +104,7 @@
 <span><span class="va">md</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/CuratedAtlasQueryR/man/get_metadata.html" class="external-link">get_metadata</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">md</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># Source:   SQL [?? x 56]</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: DuckDB v0.10.2 [vincent@Linux 6.5.0-28-generic:R 4.4.0/:memory:]</span></span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: DuckDB v0.10.2 [vincent@Linux 6.5.0-35-generic:R 4.4.0/:memory:]</span></span></span>
 <span><span class="co">##    cell_              sample_    cell_type cell_type_harmonised confidence_class</span></span>
 <span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;"> 1</span> AAACCTGAGAGACGAA_1 689e2fe4f… basal ce… basal_cell                          1</span></span>
@@ -125,19 +128,19 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="va">md</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">tissue</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>n<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># Source:   SQL [?? x 2]</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># Database: DuckDB v0.10.2 [vincent@Linux 6.5.0-28-generic:R 4.4.0/:memory:]</span></span></span>
-<span><span class="co">##    tissue                                                  n</span></span>
-<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> peripheral zone of prostate                         <span style="text-decoration: underline;">74</span>403</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> transition zone of prostate                        <span style="text-decoration: underline;">191</span>641</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> bronchus                                            <span style="text-decoration: underline;">17</span>521</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> renal medulla                                      <span style="text-decoration: underline;">877</span>939</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> epithelial cell of alveolus of lung (cell culture) <span style="text-decoration: underline;">143</span>015</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> prostate gland                                      <span style="text-decoration: underline;">66</span>245</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> muscle of abdomen                                   <span style="text-decoration: underline;">12</span>284</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> breast                                               <span style="text-decoration: underline;">9</span>770</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> ileum                                               <span style="text-decoration: underline;">80</span>215</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">10</span> caecum                                              <span style="text-decoration: underline;">11</span>331</span></span>
+<span><span class="co">## <span style="color: #949494;"># Database: DuckDB v0.10.2 [vincent@Linux 6.5.0-35-generic:R 4.4.0/:memory:]</span></span></span>
+<span><span class="co">##    tissue                                                   n</span></span>
+<span><span class="co">##    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 1</span> peripheral zone of prostate                          <span style="text-decoration: underline;">74</span>403</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 2</span> transition zone of prostate                         <span style="text-decoration: underline;">191</span>641</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 3</span> bronchus                                             <span style="text-decoration: underline;">17</span>521</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 4</span> renal medulla                                       <span style="text-decoration: underline;">877</span>939</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 5</span> epithelial cell of alveolus of lung (cell culture)  <span style="text-decoration: underline;">143</span>015</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 6</span> ileum                                                <span style="text-decoration: underline;">80</span>215</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 7</span> prostate gland                                       <span style="text-decoration: underline;">66</span>245</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 8</span> muscle of abdomen                                    <span style="text-decoration: underline;">12</span>284</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;"> 9</span> cerebellum                                         1<span style="text-decoration: underline;">368</span>270</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">10</span> breast                                                <span style="text-decoration: underline;">9</span>770</span></span>
 <span><span class="co">## <span style="color: #949494;"># ℹ more rows</span></span></span></code></pre>
 </div>
   </div>
