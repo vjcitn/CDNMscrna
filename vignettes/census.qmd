@@ -1,0 +1,96 @@
+---
+title: "Working with cellxgene census"
+title-short: "cellxgene census"
+vignette: >
+  %\VignetteIndexEntry{Working with cellxgene census}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+format: html
+toc: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+
+The CELLxGENE census from the Chan-Zuckerberg
+Human Cell Atlas project has "APIs" for R and python.
+
+We'll have a look at the R package, browsing
+metadata, and pulling down a dataset with
+selected cells.
+
+# Metadata
+
+Start with a connection.  Remember to
+close it when done.
+```{r lkmeta}
+library(cellxgene.census)
+cens = open_soma()
+cens
+```
+
+Details of working with the census are
+in documentation.  Let's extract information
+specific to humans.  There are layers to
+slice through.
+
+```{r lko}
+cd  = cens$get("census_data")
+cd
+cdh = cd$get("homo_sapiens")
+cdh
+class(cdh)
+```
+
+Documentation from `help(SOMAExperiment)` is informative.
+
+Variables available are:
+```{r lkvar}
+cdh$obs$colnames()
+```
+
+We can retrieve information concerning cells derived
+from lung samples as follows.
+
+```{r getobs, eval=FALSE}
+obs_df <- human$obs$read(column_names = 
+     c("tissue", "development_stage", "cell_type"),
+     value_filter = "tissue == 'lung'
+     )
+obs_df <- as.data.frame(obs_df$concat())
+```
+
+That can be slow, so we've saved the result to
+simplify surveying the stage and cell type data.
+```{r lkli}
+lungmeta = read.csv(system.file("csv", 
+    "lungmeta.csv.gz", package="CDNMscrna"),
+    row.names=1)
+tail(sort(table(lungmeta$development_stage)))
+tail(sort(table(lungmeta$cell_type)))
+```
+
+# Expression data
+
+Now that we've seen how to filter the metadata,
+the following should be straightforward but
+possibly slow.
+
+```
+gene_filter <- "feature_id %in% c('ENSG00000107317', 
+    'ENSG00000106034')"
+cell_filter <-  "cell_type == 'sympathetic neuron'"
+cell_columns <- c("assay", "cell_type", "tissue", 
+     "tissue_general", "suspension_type", 
+     "disease")
+
+seurat_obj <- get_seurat(
+   census = census,
+   organism = organism,
+   var_value_filter = gene_filter,
+   obs_value_filter = cell_filter,
+   obs_column_names = cell_columns
+)
+```
+
