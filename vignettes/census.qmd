@@ -3,8 +3,8 @@ title: "Working with cellxgene census"
 title-short: "cellxgene census"
 vignette: >
   %\VignetteIndexEntry{Working with cellxgene census}
-  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{quarto::html}
 format: html
 toc: true
 editor_options: 
@@ -23,10 +23,18 @@ selected cells.
 # Installation
 
 ```{r getpack}
+print(version)
+print(R.home())
 ii = rownames(installed.packages())
-if (!("cellxgene.census" %in% ii))
-  remotes::install_github("chanzuckerberg/cellxgene-census", 
-  subdir="api/r/cellxgene.census")
+if (!("cellxgene.census" %in% ii)) {
+ install.packages(
+  "cellxgene.census",
+  repos=c('https://chanzuckerberg.r-universe.dev', 
+  'https://cloud.r-project.org')
+ )
+}
+#  remotes::install_github("chanzuckerberg/cellxgene-census", 
+#  subdir="api/r/cellxgene.census")
 ```
 
 # Metadata
