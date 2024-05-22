@@ -127,23 +127,19 @@ down a dataset with selected cells.</p>
 <span>  repos<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'https://chanzuckerberg.r-universe.dev'</span>, </span>
 <span>  <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<pre><code><span><span class="co">## Installing package into '/tmp/RtmpfWYebn/temp_libpath156c48aae048'</span></span>
-<span><span class="co">## (as 'lib' is unspecified)</span></span></code></pre>
-<pre><code><span><span class="co">## also installing the dependencies 'tiledb', 'tiledbsoma'</span></span></code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co">#  remotes::install_github("chanzuckerberg/cellxgene-census", </span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#  remotes::install_github("chanzuckerberg/cellxgene-census", </span></span>
 <span><span class="co">#  subdir="api/r/cellxgene.census")</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
 <p>Start with a connection. Remember to close it when done.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/chanzuckerberg/cellxgene-census" class="external-link">cellxgene.census</a></span><span class="op">)</span></span>
 <span><span class="va">cens</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/cellxgene.census/man/open_soma.html" class="external-link">open_soma</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## The stable Census release is currently 2023-12-15. Specify census_version = "2023-12-15" in future calls to open_soma() to ensure data consistency.</span></span></code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cens</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;SOMACollection&gt;</span></span>
 <span><span class="co">##   uri: s3://cellxgene-census-public-us-west-2/cell-census/2023-12-15/soma/ </span></span>
@@ -151,27 +147,27 @@ down a dataset with selected cells.</p>
 <p>Details of working with the census are in documentation. Let’s
 extract information specific to humans. There are layers to slice
 through.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cd</span>  <span class="op">=</span> <span class="va">cens</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"census_data"</span><span class="op">)</span></span>
 <span><span class="va">cd</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;SOMACollection&gt;</span></span>
 <span><span class="co">##   uri: s3://cellxgene-census-public-us-west-2/cell-census/2023-12-15/soma/census_data </span></span>
 <span><span class="co">##   groups: homo_sapiens*, mus_musculus*</span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdh</span> <span class="op">=</span> <span class="va">cd</span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"homo_sapiens"</span><span class="op">)</span></span>
 <span><span class="va">cdh</span></span></code></pre></div>
 <pre><code><span><span class="co">## &lt;SOMAExperiment&gt;</span></span>
 <span><span class="co">##   uri: s3://cellxgene-census-public-us-west-2/cell-census/2023-12-15/soma/census_data/homo_sapiens </span></span>
 <span><span class="co">##   arrays: obs* </span></span>
 <span><span class="co">##   groups: ms*</span></span></code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">cdh</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "SOMAExperiment"     "SOMACollectionBase" "TileDBGroup"       </span></span>
 <span><span class="co">## [4] "TileDBObject"       "R6"</span></span></code></pre>
 <p>Documentation from <code>help(SOMAExperiment)</code> is
 informative.</p>
 <p>Variables available are:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cdh</span><span class="op">$</span><span class="va">obs</span><span class="op">$</span><span class="fu">colnames</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "soma_joinid"                             </span></span>
 <span><span class="co">##  [2] "dataset_id"                              </span></span>
@@ -201,14 +197,14 @@ informative.</p>
 <span><span class="co">## [26] "n_measured_vars"</span></span></code></pre>
 <p>We can retrieve information concerning cells derived from lung
 samples as follows.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>obs_df <span class="ot">&lt;-</span> human<span class="sc">$</span>obs<span class="sc">$</span><span class="fu">read</span>(<span class="at">column_names =</span> </span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>     <span class="fu">c</span>(<span class="st">"tissue"</span>, <span class="st">"development_stage"</span>, <span class="st">"cell_type"</span>),</span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>     <span class="at">value_filter =</span> <span class="st">"tissue == 'lung'</span></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="st">     )</span></span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="st">obs_df &lt;- as.data.frame(obs_df$concat())</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>obs_df <span class="ot">&lt;-</span> human<span class="sc">$</span>obs<span class="sc">$</span><span class="fu">read</span>(<span class="at">column_names =</span> </span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>     <span class="fu">c</span>(<span class="st">"tissue"</span>, <span class="st">"development_stage"</span>, <span class="st">"cell_type"</span>),</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>     <span class="at">value_filter =</span> <span class="st">"tissue == 'lung'</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="st">     )</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a><span class="st">obs_df &lt;- as.data.frame(obs_df$concat())</span></span></code></pre></div>
 <p>That can be slow, so we’ve saved the result to simplify surveying the
 stage and cell type data.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lungmeta</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"csv"</span>, </span>
 <span>    <span class="st">"lungmeta.csv.gz"</span>, package<span class="op">=</span><span class="st">"CDNMscrna"</span><span class="op">)</span>,</span>
 <span>    row.names<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
@@ -226,7 +222,7 @@ stage and cell type data.</p>
 <span><span class="co">##                                   153940 </span></span>
 <span><span class="co">##                                  unknown </span></span>
 <span><span class="co">##                                  1477039</span></span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">lungmeta</span><span class="op">$</span><span class="va">cell_type</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">##              type II pneumocyte                      macrophage </span></span>
