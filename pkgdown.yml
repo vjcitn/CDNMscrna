@@ -4,8 +4,7 @@ pkgdown_sha: ~
 articles:
   CDNMscrna: CDNMscrna.html
   census: census.html
-  curatedHCA: curatedHCA.html
-last_built: 2024-05-21T11:18Z
+last_built: 2024-05-22T09:51Z
 urls:
   reference: https://github.com/vjcitn/CDNMscrna/reference
   article: https://github.com/vjcitn/CDNMscrna/articles
