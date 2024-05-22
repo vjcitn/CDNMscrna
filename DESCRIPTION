@@ -15,7 +15,7 @@ Suggests: scRNAseq, ggplot2, scuttle, plotly, quarto, SingleR,
 	arrow, urltools, tiledb, aws.s3, spdl, aws.signature,
 	RcppSpdlog, RcppDate, RcppCCTZ, triebeard, RcppInt64,
 	nanoarrow, nanotime, openssl, fs, remotes,
-	SingleCellExperiment, dplyr
+	SingleCellExperiment, dplyr, cellxgene.census
 License: Artistic-2.0
 Encoding: UTF-8
 VignetteBuilder: quarto
@@ -23,5 +23,9 @@ biocViews: SingleCell
 RoxygenNote: 7.3.1
 URL: https://github.com/vjcitn/CDNMscrna
 BugReports: https://github.com/vjcitn/CDNMscrna/issues
+DockerImage: ghcr.io/vjcitn/cdnmscrna_319:0.0.4
+Additional_repositories: 
+	https://tldbsm.r-universe.dev,
+	https://cran.r-project.org
 
 
